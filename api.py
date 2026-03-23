@@ -56,8 +56,9 @@ async def load_db_background():
 @app.on_event("startup")
 async def startup_event():
     if not os.path.exists(DB_PATH):
-        print("⚠️ Vector DB not found. Please build it first.")
+        print(f"⚠️ Vector DB not found at {DB_PATH}. Knowledge base will be unavailable.")
     else:
+        print(f"📂 Found vector database at {DB_PATH}")
         # Offload heavy model loading so Uvicorn can bind to $PORT immediately
         asyncio.create_task(load_db_background())
 
@@ -77,7 +78,8 @@ def root():
 async def health_check():
     return {
         "status": "healthy",
-        "database_loaded": db is not None
+        "database_loaded": db is not None,
+        "env_check": os.getenv("GROQ_API_KEY") is not None
     }
 
 
