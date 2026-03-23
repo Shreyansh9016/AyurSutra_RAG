@@ -1,15 +1,13 @@
-<h1>Panchakarma Decision Support System</h1>
-<p>
-An evidence-based clinical decision support application for Panchakarma therapy
-recommendations using Retrieval-Augmented Generation (RAG) over classical
-Ayurveda texts.
+<h1 align="center">🧠 Panchakarma Decision Support System</h1>
+
+<p align="center">
+An evidence-based clinical decision support application for Panchakarma therapy<br>
+using Retrieval-Augmented Generation (RAG) over classical Ayurveda texts.
 </p>
-<p>
-The system analyzes patient details and symptoms to generate therapy suggestions
-grounded in authoritative literature.
-</p>
+
 <hr>
-<h2>Features</h2>
+
+<h2>🚀 Features</h2>
 <ul>
   <li>Evidence-based recommendations using classical Ayurveda sources</li>
   <li>Retrieval-Augmented Generation (RAG) architecture</li>
@@ -18,8 +16,10 @@ grounded in authoritative literature.
   <li>Explainable outputs with supporting passages</li>
   <li>Streamlit web interface</li>
 </ul>
+
 <hr>
-<h2>How to Use the Application</h2>
+
+<h2>🧑‍⚕️ How to Use the Application</h2>
 <ol>
   <li>Enter patient information:
     <ul>
@@ -30,95 +30,138 @@ grounded in authoritative literature.
       <li>Symptoms</li>
     </ul>
   </li>
-  <li>Click <strong>Submit</strong></li>
-  <li>Review the recommendation and supporting evidence</li>
+  <li>Click <b>Submit</b></li>
+  <li>Review recommendations and supporting evidence</li>
 </ol>
+
 <hr>
-<h1>Running the Application LOCALLY</h1>
-<h2>Prerequisites</h2>
+
+<h1>💻 Running the Application LOCALLY</h1>
+
+<h2>🔧 Prerequisites</h2>
 <ul>
-  <li>Python 3.10 or later recommended</li>
+  <li>Python 3.10 or later</li>
   <li>Git installed</li>
 </ul>
-<h2>1. Clone the Repository</h2>
+
+<hr>
+
+<h2>1️⃣ Clone the Repository</h2>
 <pre><code>git clone https://github.com/Shreyansh9016/AyurSutra_RAG/
-cd Panchakarma-Decision-Support
-<h2>2. Create Virtual Environment</h2>
-<p><strong>Windows (CMD)</strong></p>
-<pre><code>python -m venv rag_env
-<p><strong>macOS / Linux</strong></p>
-<pre><code>python3 -m venv rag_env
-<h2>3. Activate Virtual Environment</h2>
-<p><strong>Windows (CMD)</strong></p>
-<pre><code>rag_env\Scripts\activate
-<p><strong>Windows (PowerShell)</strong></p>
-<pre><code>rag_env\Scripts\Activate.ps1
-<p><strong>macOS / Linux</strong></p>
-<pre><code>source rag_env/bin/activate
-<p>After activation, the terminal should display something like:</p>
-<pre><code>(rag_env)
-<h2>4. Install Dependencies</h2>
-<pre><code>pip install -r requirements.txt
-<h2>5. Add Groq API Key</h2>
-<p>Create a file named <code>.env</code> in the project root:</p>
-<pre><code>GROQ_API_KEY=your_api_key_here
-<h2>6. Run the Application</h2>
-<pre><code>streamlit run app.py
+cd AyurSutra_RAG</code></pre>
+
+<hr>
+
+<h2>2️⃣ Create Virtual Environment</h2>
+
+<p><b>Windows (CMD)</b></p>
+<pre><code>python -m venv rag_env</code></pre>
+
+<p><b>macOS / Linux</b></p>
+<pre><code>python3 -m venv rag_env</code></pre>
+
+<hr>
+
+<h2>3️⃣ Activate Virtual Environment</h2>
+
+<p><b>Windows (CMD)</b></p>
+<pre><code>rag_env\Scripts\activate</code></pre>
+
+<p><b>Windows (PowerShell)</b></p>
+<pre><code>rag_env\Scripts\Activate.ps1</code></pre>
+
+<p><b>macOS / Linux</b></p>
+<pre><code>source rag_env/bin/activate</code></pre>
+
+<p>After activation, you should see:</p>
+<pre><code>(rag_env)</code></pre>
+
+<hr>
+
+<h2>4️⃣ Install Dependencies</h2>
+<pre><code>pip install -r requirements.txt</code></pre>
+
+<hr>
+
+<h2>5️⃣ Add Groq API Key</h2>
+<p>Create a <code>.env</code> file in the project root:</p>
+
+<pre><code>GROQ_API_KEY=your_api_key_here</code></pre>
+
+<hr>
+
+<h2>6️⃣ Run the Application</h2>
+<pre><code>streamlit run app.py</code></pre>
+
 <p>The application will open in your browser.</p>
-<h3>Notes (Local Run)</h3>
+
+<h3>⚠️ Notes</h3>
 <ul>
-  <li>The vector database is built automatically from the included PDFs</li>
+  <li>Vector database builds automatically from PDFs</li>
   <li>First run may take several minutes</li>
-  <li>Subsequent runs are much faster</li>
+  <li>Subsequent runs are faster</li>
 </ul>
+
 <hr>
-<h1>Running the Application ONLINE (Streamlit Cloud)</h1>
-<h2>1. Open the deployed app link</h2>
-<p>If the application is deployed, simply open the URL in your browser.</p>
-<h2>2. Add API Key in Streamlit Secrets</h2>
-<p>If required, go to:</p>
-<p><strong>App → Settings → Secrets</strong></p>
-<p>Add:</p>
-<pre><code>GROQ_API_KEY = "your_api_key_here"
-<h2>3. Start the Application</h2>
+
+<h1>☁️ Running ONLINE (Streamlit Cloud)</h1>
+
+<h2>1️⃣ Open App Link</h2>
+<p>Open the deployed application URL.</p>
+
+<h2>2️⃣ Add API Key in Secrets</h2>
+<p>Go to:</p>
+<p><b>App → Settings → Secrets</b></p>
+
+<pre><code>GROQ_API_KEY = "your_api_key_here"</code></pre>
+
+<h2>3️⃣ Start the Application</h2>
 <ul>
-  <li>Streamlit Cloud puts inactive apps to sleep</li>
-  <li>If the app has been idle, it may not start immediately</li>
-  <li>A message or button may appear to wake the app</li>
-  <li>Click it to start</li>
+  <li>App may be asleep due to inactivity</li>
+  <li>Click "Wake Up" if prompted</li>
 </ul>
-<h3>Important — Initial Loading Time</h3>
+
+<h3>⏳ Initial Loading Time</h3>
 <ul>
-  <li>First startup may take <strong>1–3 minutes</strong></li>
-  <li>The server environment is fresh</li>
-  <li>The knowledge base may rebuild</li>
-  <li>Embeddings are generated during initialization</li>
+  <li>First startup: 1–3 minutes</li>
+  <li>Embeddings + DB initialization happens here</li>
 </ul>
-<p>After initialization, the app runs normally.</p>
+
 <hr>
-<h2>Project Structure</h2>
+
+<h2>📁 Project Structure</h2>
+
 <pre><code>Panchakarma-Decision-Support/
 │
-├── app.py                 # Streamlit application
-├── build_db.py            # Builds FAISS vector database
-├── rag_pipeline.py        # Retrieval + LLM pipeline
-├── requirements.txt       # Dependencies
-├── .env.example           # Example environment variables
+├── app.py
+├── build_db.py
+├── rag_pipeline.py
+├── requirements.txt
+├── .env.example
 ├── .gitignore
 │
 ├── data/
-│   └── classical/         # Source PDFs used as knowledge base
+│   └── classical/
 │
-└── vector_db/             # Generated database (not tracked)
+└── vector_db/
+</code></pre>
+
 <hr>
-<h2>Disclaimer</h2>
+
+<h2>⚠️ Disclaimer</h2>
+
 <p>
-This system generates recommendations based on textual sources and is intended
-for academic and educational purposes only.
+This system is for <b>educational purposes only</b>.
 </p>
+
 <p>
-<strong>It is NOT a substitute for professional medical advice,
-diagnosis, or treatment.</strong>
+<b>It is NOT a substitute for professional medical advice, diagnosis, or treatment.</b>
 </p>
-<p>Always consult a qualified healthcare professional.</p>
+
+<p>
+Always consult a qualified healthcare professional.
+</p>
+
 <hr>
+
+<p align="center">✨ Built with RAG + AI for Healthcare Innovation ✨</p>
