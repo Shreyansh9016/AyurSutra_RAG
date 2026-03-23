@@ -41,7 +41,7 @@ grounded in authoritative literature.
   <li>Git installed</li>
 </ul>
 <h2>1. Clone the Repository</h2>
-<pre><code>git clone https://github.com/YOUR_USERNAME/Panchakarma-Decision-Support.git
+<pre><code>git clone https://github.com/Shreyansh9016/AyurSutra_RAG/
 cd Panchakarma-Decision-Support
 <h2>2. Create Virtual Environment</h2>
 <p><strong>Windows (CMD)</strong></p>
