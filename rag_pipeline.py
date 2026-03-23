@@ -90,9 +90,6 @@ Provide your answer in clear sections:
 """
 
     response = llm.invoke(prompt)
-
-<<<<<<< HEAD
-=======
     return response.content, docs
 
 # -------------------------
@@ -141,5 +138,4 @@ Answer:
 
     response = llm.invoke(prompt)
 
->>>>>>> ea5707e (First)
     return response.content, docs
