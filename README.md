@@ -42,108 +42,67 @@ using Retrieval-Augmented Generation (RAG) over classical Ayurveda texts.
 <ul>
   <li>Python 3.10 or later</li>
   <li>Git installed</li>
+  <li>An API key from <a href="https://console.groq.com/">Groq Cloud</a></li>
 </ul>
 
 <hr>
 
 <h2>1️⃣ Clone the Repository</h2>
-<pre><code>git clone https://github.com/Shreyansh9016/AyurSutra_RAG/
+<pre><code>git clone https://github.com/VashuJain2024/AyurSutra_RAG
 cd AyurSutra_RAG</code></pre>
 
 <hr>
 
-<h2>2️⃣ Create Virtual Environment</h2>
-
-<p><b>Windows (CMD)</b></p>
-<pre><code>python -m venv rag_env</code></pre>
-
-<p><b>macOS / Linux</b></p>
-<pre><code>python3 -m venv rag_env</code></pre>
-
-<hr>
-
-<h2>3️⃣ Activate Virtual Environment</h2>
-
-<p><b>Windows (CMD)</b></p>
-<pre><code>rag_env\Scripts\activate</code></pre>
+<h2>2️⃣ Create and Activate Virtual Environment</h2>
 
 <p><b>Windows (PowerShell)</b></p>
-<pre><code>rag_env\Scripts\Activate.ps1</code></pre>
+<pre><code>python -m venv rag_env
+.\rag_env\Scripts\Activate.ps1</code></pre>
 
 <p><b>macOS / Linux</b></p>
-<pre><code>source rag_env/bin/activate</code></pre>
-
-<p>After activation, you should see:</p>
-<pre><code>(rag_env)</code></pre>
+<pre><code>python3 -m venv rag_env
+source rag_env/bin/activate</code></pre>
 
 <hr>
 
-<h2>4️⃣ Install Dependencies</h2>
+<h2>3️⃣ Install Dependencies</h2>
 <pre><code>pip install -r requirements.txt</code></pre>
 
 <hr>
 
-<h2>5️⃣ Add Groq API Key</h2>
-<p>Create a <code>.env</code> file in the project root:</p>
-
+<h2>4️⃣ Configure Environment Variables</h2>
+<p>Create a <code>.env</code> file in the project root and add your Groq API key:</p>
 <pre><code>GROQ_API_KEY=your_api_key_here</code></pre>
 
 <hr>
 
-<h2>6️⃣ Run the Application</h2>
+<h2>5️⃣ Run the Application</h2>
+
+<h3>Option A: Streamlit UI (Recommended for Users)</h3>
 <pre><code>streamlit run app.py</code></pre>
 
-<p>The application will open in your browser.</p>
-
-<h3>⚠️ Notes</h3>
-<ul>
-  <li>Vector database builds automatically from PDFs</li>
-  <li>First run may take several minutes</li>
-  <li>Subsequent runs are faster</li>
-</ul>
-
-<hr>
-
-<h1>☁️ Running ONLINE (Streamlit Cloud)</h1>
-
-<h2>1️⃣ Open App Link</h2>
-<p>Open the deployed application URL.</p>
-
-<h2>2️⃣ Add API Key in Secrets</h2>
-<p>Go to:</p>
-<p><b>App → Settings → Secrets</b></p>
-
-<pre><code>GROQ_API_KEY = "your_api_key_here"</code></pre>
-
-<h2>3️⃣ Start the Application</h2>
-<ul>
-  <li>App may be asleep due to inactivity</li>
-  <li>Click "Wake Up" if prompted</li>
-</ul>
-
-<h3>⏳ Initial Loading Time</h3>
-<ul>
-  <li>First startup: 1–3 minutes</li>
-  <li>Embeddings + DB initialization happens here</li>
-</ul>
+<h3>Option B: FastAPI Backend (For Developers)</h3>
+<pre><code>python api.py</code></pre>
+<p>Once running, you can access the API documentation at <code>http://127.0.0.1:8000/docs</code> or check the health status at <code>http://127.0.0.1:8000/health</code>.</p>
 
 <hr>
 
 <h2>📁 Project Structure</h2>
 
-<pre><code>Panchakarma-Decision-Support/
+<pre><code>AyurSutra_RAG/
 │
-├── app.py
-├── build_db.py
-├── rag_pipeline.py
-├── requirements.txt
-├── .env.example
-├── .gitignore
+├── app.py                # Streamlit Frontend
+├── api.py                # FastAPI Backend
+├── build_db.py           # Script to process PDFs and build vector DB
+├── rag_pipeline.py       # Core RAG logic and LLM integration
+├── requirements.txt      # Python dependencies
+├── .env                  # Environment variables (created manually)
+├── .gitignore            # Git ignore rules
 │
-├── data/
+├── data/                 # Source medical texts (PDFs)
 │   └── classical/
 │
-└── vector_db/
+└── vector_db/            # Generated FAISS vector database
 </code></pre>
 
 <hr>
