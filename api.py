@@ -5,6 +5,7 @@ from rag_pipeline import load_db, generate_answer, answer_general_query
 import os
 from dotenv import load_dotenv
 import traceback
+import asyncio
 
 # -------------------------
 # LOAD ENV VARIABLES
@@ -37,23 +38,28 @@ DB_PATH = "vector_db/classical_db"
 # -------------------------
 db = None
 
+async def load_db_background():
+    global db
+    loop = asyncio.get_running_loop()
+    try:
+        print("⏳ Loading Vector database and AI models in background...")
+        # Run synchronous load_db in a thread pool to avoid blocking the event loop
+        db = await loop.run_in_executor(None, load_db, DB_PATH)
+        print("✅ Vector database loaded successfully")
+    except Exception as e:
+        print(f"❌ Failed to load database: {e}")
+        traceback.print_exc()
+
 # -------------------------
 # STARTUP EVENT
 # -------------------------
 @app.on_event("startup")
 async def startup_event():
-    global db
-
     if not os.path.exists(DB_PATH):
-        raise RuntimeError("❌ Vector DB not found. Please build it first.")
-
-    try:
-        db = load_db(DB_PATH)
-        print("✅ Vector database loaded successfully")
-    except Exception as e:
-        print(f"❌ Failed to load database: {e}")
-        traceback.print_exc()
-        raise e
+        print("⚠️ Vector DB not found. Please build it first.")
+    else:
+        # Offload heavy model loading so Uvicorn can bind to $PORT immediately
+        asyncio.create_task(load_db_background())
 
 
 # -------------------------
@@ -96,7 +102,7 @@ class GeneralQuery(BaseModel):
 @app.post("/analyze")
 async def analyze_case(data: CaseQuery):
     if db is None:
-        raise HTTPException(status_code=500, detail="Database not loaded")
+        raise HTTPException(status_code=503, detail="Model and database are still loading. Please try again in a few seconds.")
 
     query_text = (
         f"Age: {data.age}\n"
@@ -133,7 +139,7 @@ async def analyze_case(data: CaseQuery):
 @app.post("/query")
 async def general_query(data: GeneralQuery):
     if db is None:
-        raise HTTPException(status_code=500, detail="Database not loaded")
+        raise HTTPException(status_code=503, detail="Model and database are still loading. Please try again in a few seconds.")
 
     try:
         answer, docs = answer_general_query(data.query, db)
@@ -157,8 +163,10 @@ async def general_query(data: GeneralQuery):
 
 
 # -------------------------
-# RUN SERVER (LOCAL ONLY)
+# RUN SERVER
 # -------------------------
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
+    # Use the PORT environment variable provided by Render, default to 8000 for local
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("api:app", host="0.0.0.0", port=port)
