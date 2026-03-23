@@ -1,1 +1,19 @@
-.env 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+env/
+venv/
+rag_env/
+
+# Project Specific
+vector_db/
+data/classical/indexed_data/
+
+# IDE settings
+.vscode/
+.idea/
