@@ -1,5 +1,5 @@
 from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 import os
@@ -15,16 +15,18 @@ LLM_MODEL = "llama-3.1-8b-instant"
 
 
 # -------------------------
-# CHECK API KEY
+# CHECK API KEY (Moved to usage to prevent import-time crashes)
 # -------------------------
-if not os.getenv("GROQ_API_KEY"):
-    raise ValueError("❌ GROQ_API_KEY not found in .env file")
+def validate_config():
+    if not os.getenv("GROQ_API_KEY"):
+        raise ValueError("❌ GROQ_API_KEY not found in environment variables")
 
 
 # -------------------------
 # GET EMBEDDINGS
 # -------------------------
 def get_embeddings():
+    validate_config()
     return HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
 
 

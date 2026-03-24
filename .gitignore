@@ -11,7 +11,7 @@ venv/
 rag_env/
 
 # Project Specific
-vector_db/
+# vector_db/ (Enabled for deployment)
 data/classical/indexed_data/
 
 # IDE settings
