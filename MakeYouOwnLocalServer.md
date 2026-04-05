@@ -52,16 +52,17 @@ ragenv\Scripts\activate
 <h2>📦 Step 2: Install Dependencies</h2>
 
 <pre>
-pip install fastapi uvicorn python-dotenv
 pip install -r requirements.txt
 </pre>
+
+<p><i>This installs FastAPI, uvicorn, dotenv, and all required libraries.</i></p>
 
 <hr>
 
 <h2>▶️ Step 3: Start FastAPI Server</h2>
 
 <pre>
-uvicorn api:app --host 0.0.0.0 --port 8000
+uvicorn api:app --reload
 </pre>
 
 <p><b>Test locally:</b></p>
@@ -69,6 +70,8 @@ uvicorn api:app --host 0.0.0.0 --port 8000
 <pre>
 http://localhost:8000/docs
 </pre>
+
+<p><i>Ensure your API works locally before proceeding.</i></p>
 
 <hr>
 
@@ -92,19 +95,19 @@ http://localhost:8000/docs
 
 <hr>
 
-<h2>🔑 Step 6: Configure ngrok</h2>
+<h2>🔑 Step 6: Configure ngrok (One-Time Setup)</h2>
 
 <pre>
 ngrok config add-authtoken YOUR_AUTH_TOKEN
 </pre>
 
-<p><i>Run this command once after installation</i></p>
+<p><i>Run this command once after installation.</i></p>
 
 <hr>
 
 <h2>🚀 Step 7: Start ngrok Tunnel</h2>
 
-<p><b>Open a NEW terminal</b></p>
+<p><b>Open a NEW terminal (keep FastAPI running in first terminal)</b></p>
 
 <pre>
 cd C:\ngrok
@@ -115,6 +118,20 @@ ngrok http 8000
 
 <pre>
 https://abc123.ngrok-free.app → http://localhost:8000
+</pre>
+
+<hr>
+
+<h2>⚙️ ngrok Notes</h2>
+
+<ul>
+  <li>No additional commands required after starting ngrok</li>
+  <li>Simply copy the HTTPS URL and use it</li>
+  <li>If issues occur, try:</li>
+</ul>
+
+<pre>
+ngrok http 8000 --host-header=localhost
 </pre>
 
 <hr>
@@ -164,9 +181,9 @@ POST /query
 
 <ul>
   <li>Keep both terminals running</li>
-  <li>ngrok URL changes every restart</li>
-  <li>Laptop must stay ON</li>
-  <li>Allow Python in firewall if needed</li>
+  <li>ngrok URL changes on every restart (free version)</li>
+  <li>Your laptop must stay ON</li>
+  <li>Allow Python in firewall if prompted</li>
 </ul>
 
 <hr>
@@ -195,7 +212,7 @@ POST /query
 <ul>
   <li>✔ Fully working RAG API</li>
   <li>✔ Public deployment without cloud</li>
-  <li>✔ Perfect for interviews & demos</li>
+  <li>✔ Ideal for demos, hackathons, and interviews</li>
 </ul>
 
 <p align="center"><b>✨ Zero-cost AI deployment achieved!</b></p>
